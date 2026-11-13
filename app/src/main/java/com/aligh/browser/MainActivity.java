@@ -158,12 +158,12 @@ public class MainActivity extends Activity {
             }
         });
 
-        web.setDownloadListener((url, userAgent, contentDisposition, mimeType, length) -> {
+        web.setDownloadListener((downloadUrl, userAgent, contentDisposition, mimeType, length) -> {
             try {
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(downloadUrl));
                 request.setNotificationVisibility(
                     DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                String filename = URLUtil.guessFileName(url, contentDisposition, mimeType);
+                String filename = URLUtil.guessFileName(downloadUrl, contentDisposition, mimeType);
                 request.setTitle(filename);
                 request.setDescription("Ali_gh Browser");
                 request.setDestinationInExternalPublicDir(
